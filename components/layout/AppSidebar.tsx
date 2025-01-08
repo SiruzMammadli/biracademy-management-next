@@ -4,38 +4,36 @@ import {Flex} from "@/components/ui";
 import {SidebarNavListType} from "@/components/layout/types";
 import {
     CalendarIcon,
-    ChartAreaIcon,
     GaugeIcon,
-    ReceiptTextIcon,
     SettingsIcon,
-    UserPlusIcon,
-    UsersIcon
 } from "lucide-react";
 import SidebarNavList from "@/components/layout/sidebar/SidebarNavList";
 import {UpgradePlanCard} from "@/components/layout";
 import SidebarProfileMenu from "@/components/layout/sidebar/SidebarProfileMenu";
+import {useAuth} from "@/src/providers/auth";
 
 const navList: SidebarNavListType[] = [
     {
-        title: "MAIN MENU",
+        title: "ƏSAS MENYU",
         items: [
-            {icon: <GaugeIcon/>, label: 'Dashboard', href: '/app'},
-            {icon: <CalendarIcon/>, label: 'Calendar', href: '/app/calendar'},
-            {icon: <SettingsIcon/>, label: 'Settings', href: '/app/settings'},
+            {icon: <GaugeIcon/>, label: 'İdarə paneli', href: '/app'},
+            {icon: <CalendarIcon/>, label: 'Təqvim', href: '/app/calendar'},
+            {icon: <SettingsIcon/>, label: 'Parametrlər', href: '/app/settings'},
         ]
     },
-    {
-        title: "TEAM MANAGEMENT",
-        items: [
-            {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
-            {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
-            {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
-            {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
-        ]
-    }
+    // {
+    //     title: "TEAM MANAGEMENT",
+    //     items: [
+    //         {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
+    //         {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
+    //         {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
+    //         {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
+    //     ]
+    // }
 ]
 
 export default () => {
+    const auth = useAuth();
     return (
         <Flex
             as="aside"
@@ -53,8 +51,8 @@ export default () => {
                     <SidebarNavList key={key} title={nav.title} items={nav.items}/>
                 ))}
             </section>
-            <UpgradePlanCard/>
-            <SidebarProfileMenu/>
+            {/*<UpgradePlanCard/>*/}
+            {auth?.user ? <SidebarProfileMenu/> : null}
         </Flex>
     )
 }

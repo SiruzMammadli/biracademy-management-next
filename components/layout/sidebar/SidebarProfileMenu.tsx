@@ -1,13 +1,16 @@
 'use client';
 import {css} from "@emotion/react";
 import profileImg from "@/public/images/pro_pic-min.jpg";
-import {ChevronsUpDownIcon} from "lucide-react";
-import Image from "next/image";
+import {ChevronsUpDownIcon, LogOutIcon} from "lucide-react";
 import {Flex} from "@/components/ui";
-import Skeleton from "react-loading-skeleton";
 import Dropdown from "@/components/ui/Dropdown";
+import {signout} from "@/app/(auth)/_signout/actions";
+import {useActionState} from "react";
+import {useAuth} from "@/src/providers/auth";
 
 export default () => {
+    const [_, action] = useActionState(signout, null);
+    const auth = useAuth();
     return (
         <Dropdown>
             <Dropdown.Trigger>
@@ -19,28 +22,33 @@ export default () => {
                         inline
                         gapX="12px"
                     >
-                        <Image
+                        <div
                             css={styles.img}
-                            src={profileImg}
-                            alt=""
-                        />
+                        >
+                            <Flex as="span" justifyContent="center">SM</Flex>
+                            {/*<Image*/}
+                            {/*    src={profileImg}*/}
+                            {/*    alt="profile_photo"*/}
+                            {/*/>*/}
+                        </div>
                         <div>
-                            {/*{"Siruz Mammadli" ||*/}
-                            {/*    <Skeleton baseColor="rgb(var(--slate-200))" width="150px" height="18px"/>}*/}
-                            Siruz Mammadli
+                            {auth?.user?.fullname}
                         </div>
                     </Flex>
                     <ChevronsUpDownIcon css={styles.icon}/>
                 </Flex>
             </Dropdown.Trigger>
             <Dropdown.Content>
-                <ul>
-                    <li>
-                        <button>
-                            Hesabdan çıx
-                        </button>
-                    </li>
-                </ul>
+                <Dropdown.Items>
+                    <Dropdown.Item>
+                        <form action={action}>
+                            <Flex as="button" gapX="8px">
+                                <LogOutIcon css={css`width: 16px;height: 16px;`}/>
+                                <span>Hesabdan çıx</span>
+                            </Flex>
+                        </form>
+                    </Dropdown.Item>
+                </Dropdown.Items>
             </Dropdown.Content>
         </Dropdown>
     )
@@ -67,6 +75,23 @@ const styles = {
         border-radius: 100%;
         outline: 2px solid rgb(var(--slate-500));
         outline-offset: 2px;
+
+        > * {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+        }
+        
+        > span {
+            font-size: 12px;
+            font-weight: 400;
+            background-color: rgb(var(--slate-500));
+            color: white;
+        }
+
+        > img {
+            object-fit: cover;
+        }
     `,
     icon: css`
         width: 14px;

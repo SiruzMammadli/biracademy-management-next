@@ -15,7 +15,6 @@ export default (
         placeholder?: string;
         type?: React.HTMLInputTypeAttribute;
         name?: string;
-        register?: any;
         isPasswordSecure?: boolean;
     }>
 ) => {
@@ -28,7 +27,6 @@ export default (
                     id={uuid}
                     placeholder={placeholder}
                     name={name}
-                    register={props.register}
                     isPasswordSecure={props.isPasswordSecure}
                 />
             ) : (
@@ -37,7 +35,6 @@ export default (
                     placeholder={placeholder}
                     type={type}
                     name={name}
-                    register={props.register}
                 />
             )}
         </div>

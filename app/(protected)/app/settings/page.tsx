@@ -1,7 +1,7 @@
 export default () => {
     return (
         <>
-            App page
+            Settings page
         </>
     )
 }

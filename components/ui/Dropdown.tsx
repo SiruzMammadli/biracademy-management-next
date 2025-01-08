@@ -47,7 +47,7 @@ Dropdown.Trigger = DropdownTrigger;
 
 type DropdownContentProps = PropsWithChildren<{}>;
 
-const DropdownContent = ({ children }: DropdownContentProps) => {
+const DropdownContent = ({children}: DropdownContentProps) => {
     const {isOpen} = useDropdownState();
 
     return isOpen ? (
@@ -59,22 +59,41 @@ const DropdownContent = ({ children }: DropdownContentProps) => {
 
 Dropdown.Content = DropdownContent;
 
-const DropdownList = () => {
+const DropdownItems = ({children}: PropsWithChildren) => {
     return (
         <ul>
-
+            {children}
         </ul>
     )
 }
 
-Dropdown.List = DropdownList;
+Dropdown.Items = DropdownItems;
+
+type DropdownItemProps = PropsWithChildren<{
+    onClick?: (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
+}>;
+const DropdownItem = ({children, ...props}: DropdownItemProps) => {
+    return (
+        <li
+            css={styles.dropdownContent.item}
+            onClick={props.onClick}
+        >
+            {children}
+        </li>
+    )
+}
+
+Dropdown.Item = DropdownItem;
+
+const DropdownDivider = () => <hr css={styles.dropdownContent.divider}/>
+Dropdown.Divider = DropdownDivider;
 
 const styles = {
     dropdown: {
         _: css`position: relative;`
     },
     dropdownTrigger: {
-        _:css`
+        _: css`
             width: 100%;
         `,
     },
@@ -87,9 +106,18 @@ const styles = {
             z-index: 100;
             border: var(--border-template);
             border-radius: 8px;
-            padding: 8px 12px;
             min-width: 200px;
             width: max-content;
+        `,
+        item: css`
+            button {
+                width: 100%;
+                padding: 10px 12px;
+                cursor: pointer;
+            }
+        `,
+        divider: css`
+            border: 1px solid var(--border-color);
         `,
     }
 }

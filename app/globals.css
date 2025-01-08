@@ -87,7 +87,7 @@ html {
 }
 
 body {
-  background-color: rgb(241 245 249 / 1);
+  background-color: rgb(var(--slate-100) / 1);
 }
 
 ul {

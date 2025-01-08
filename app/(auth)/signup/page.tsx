@@ -4,8 +4,12 @@ import Link from 'next/link'
 import {Button, Flex} from "@/components/ui";
 import {authStyles} from "@/app/(auth)/_styles/auth.styles";
 import {InputField} from "@/components/form";
+import {useActionState} from "react";
+import {signup} from "@/app/(auth)/signup/actions";
 
 export default () => {
+    const [_, action, pending] = useActionState(signup, null);
+
     return (
         <AuthLayout>
             <Flex
@@ -16,7 +20,7 @@ export default () => {
                     <h1>Hesabını yarat</h1>
                     <p>Əsrarəngiz özəlliklərdən yararlanmaq üçün qeydiyyatdan keç</p>
                 </div>
-                <form css={authStyles.form}>
+                <form action={action} css={authStyles.form}>
                     <InputField label="Ad Soyad" placeholder="Adını və soyadını daxil et" name="fullname"/>
                     <InputField label="Email" placeholder="Email ünvanını daxil et" type="email" name="email"
                               />
@@ -24,7 +28,7 @@ export default () => {
                               />
                     <InputField label="Təkrar şifrə" placeholder="Təkrar şifrəni daxil et" type="password"
                                name="repeat_password"/>
-                    <Button>Tamamla</Button>
+                    <Button disabled={pending}>Tamamla</Button>
                 </form>
                 <Flex
                     gapX="4px"
