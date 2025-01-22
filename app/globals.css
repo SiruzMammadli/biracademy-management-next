@@ -66,6 +66,18 @@
   --slate-100: 241 245 249;
   --slate-50: 248 250 252;
 
+  --emerald-950: 2 44 34;
+  --emerald-900: 6 78 59;
+  --emerald-800: 6 95 70;
+  --emerald-700: 4 120 87;
+  --emerald-600: 5 150 105;
+  --emerald-500: 16 185 129;
+  --emerald-400: 52 211 153;
+  --emerald-300: 110 231 183;
+  --emerald-200: 167 243 208;
+  --emerald-100: 209 250 229;
+  --emerald-50: 236 253 245;
+
   --border-color: rgb(var(--slate-200));
   --border-template: 2px solid var(--border-color);
 

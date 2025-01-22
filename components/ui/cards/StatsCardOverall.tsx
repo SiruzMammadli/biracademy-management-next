@@ -1,13 +1,14 @@
 import Widget from "@/components/ui/Widget";
+import {PropsWithChildren} from "react";
 
-export default (props: { title: string; }) => {
+export default (props: PropsWithChildren<{ title: string; }>) => {
     return (
         <Widget>
             <Widget.Header
                 title={props.title}
             />
             <Widget.Content>
-                salam
+                {props.children}
             </Widget.Content>
         </Widget>
     )

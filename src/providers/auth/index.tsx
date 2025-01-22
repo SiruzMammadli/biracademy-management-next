@@ -13,7 +13,7 @@ export const useAuth = () => {
     return context;
 }
 
-export const AuthProvider = ({children}: PropsWithChildren) => {
+export default function AuthProvider ({children}: PropsWithChildren) {
     const {data: user} = useQuery({
         queryKey: ['auth.current-user'],
         queryFn: async () => {

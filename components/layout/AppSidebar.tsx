@@ -5,7 +5,7 @@ import {SidebarNavListType} from "@/components/layout/types";
 import {
     CalendarIcon,
     GaugeIcon,
-    SettingsIcon,
+    SettingsIcon, UsersIcon,
 } from "lucide-react";
 import SidebarNavList from "@/components/layout/sidebar/SidebarNavList";
 import {UpgradePlanCard} from "@/components/layout";
@@ -21,15 +21,16 @@ const navList: SidebarNavListType[] = [
             {icon: <SettingsIcon/>, label: 'Parametrlər', href: '/app/settings'},
         ]
     },
-    // {
-    //     title: "TEAM MANAGEMENT",
-    //     items: [
-    //         {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
-    //         {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
-    //         {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
-    //         {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
-    //     ]
-    // }
+    {
+        title: "İDARƏ",
+        items: [
+            {icon: <UsersIcon/>, label: 'Tələbələr', href: '/app/students'},
+            // {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
+            // {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
+            // {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
+            // {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
+        ]
+    }
 ]
 
 export default () => {

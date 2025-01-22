@@ -27,13 +27,16 @@ export const signin = async (_: unknown, formData: FormData) => {
         password: formData.get("password"),
     });
     if (res.status === StatusCodes.Ok) {
+        let date = new Date();
+        let expires = new Date(date.setMonth(date.getDate() + 1));
+
         const cookieStore = await cookies();
         cookieStore.set({
             httpOnly: true,
             name: `${process.env.NEXT_PUBLIC_COOKIE_TOKEN_NAME}`,
             value: res.data.access_token,
             path: '/',
-            maxAge: 3600 * 24,
+            expires,
             secure: true,
             sameSite: 'lax',
         });
@@ -42,7 +45,7 @@ export const signin = async (_: unknown, formData: FormData) => {
             name: `${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`,
             value: res.data.refresh_token,
             path: '/',
-            maxAge: 3600 * 24,
+            expires,
             secure: true,
             sameSite: 'lax',
         });

@@ -3,12 +3,12 @@ import AuthLayout from "@/components/layout/AuthLayout";
 import {Button, Flex} from "@/components/ui";
 import {authStyles} from "@/app/(auth)/_styles/auth.styles";
 import Link from "next/link";
-import {CheckboxField, InputField} from "@/components/form";
-import {useActionState, useState} from "react";
+import {InputField} from "@/components/form";
+import {useActionState} from "react";
 import {signin} from "@/app/(auth)/signin/actions";
 
 export default () => {
-    const [isRememberMe, setRememberMe] = useState<boolean>(false);
+    // const [isRememberMe, setRememberMe] = useState<boolean>(false);
     const [_, action, pending] = useActionState(signin, null);
 
     return (

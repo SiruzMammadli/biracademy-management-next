@@ -15,8 +15,8 @@ export default (
         children?: React.ReactNode;
         className?: string;
         name?: string;
-        register?: any;
         style?: SerializedStyles;
+        defaultValue?: string;
     }>
 ) => {
     return (
@@ -26,7 +26,7 @@ export default (
                 placeholder={placeholder}
                 type={type}
                 name={props.name}
-                {...props?.register?.(props.name)}
+                defaultValue={props.defaultValue}
             />
             {children}
         </div>

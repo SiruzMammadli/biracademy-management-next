@@ -1,6 +1,5 @@
 'use client';
 import {css} from "@emotion/react";
-import profileImg from "@/public/images/pro_pic-min.jpg";
 import {ChevronsUpDownIcon, LogOutIcon} from "lucide-react";
 import {Flex} from "@/components/ui";
 import Dropdown from "@/components/ui/Dropdown";
@@ -26,10 +25,6 @@ export default () => {
                             css={styles.img}
                         >
                             <Flex as="span" justifyContent="center">SM</Flex>
-                            {/*<Image*/}
-                            {/*    src={profileImg}*/}
-                            {/*    alt="profile_photo"*/}
-                            {/*/>*/}
                         </div>
                         <div>
                             {auth?.user?.fullname}

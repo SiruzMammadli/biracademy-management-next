@@ -6,6 +6,7 @@ import {SkeletonTheme} from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Flex, Spinner} from "@/components/ui";
 import {useAuth} from "@/src/providers/auth";
+import {DialogProvider} from "@/src/providers";
 
 export default ({children}: PropsWithChildren) => {
     const auth = useAuth();
@@ -19,6 +20,7 @@ export default ({children}: PropsWithChildren) => {
                     <Spinner size={150} strokeWidth={3}/>
                 </Flex>
             ) : null}
+            <DialogProvider />
             <div css={styles._}>
                 <AppSidebar/>
                 <AppContainer>
