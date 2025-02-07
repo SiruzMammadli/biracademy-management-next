@@ -1,16 +1,17 @@
 'use client';
 import Widget from "@/components/ui/Widget";
 import Table, {type TableRow} from "@/components/ui/Table";
-import {useQuery} from "@tanstack/react-query";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {http} from "@/lib/helpers/axios";
 import {StatusCodes} from "@/lib/helpers/statusCodes";
 import {Button} from "@/components/ui";
-import {EllipsisVerticalIcon, PencilIcon} from "lucide-react";
+import {PencilIcon, Trash2Icon} from "lucide-react";
 import Flex from "@/components/ui/Flex";
 import {css} from "@emotion/react";
-import {StudentTableUpdateDialog} from "@/components/students";
+import {StudentTableInsertDialog, StudentTableUpdateDialog} from "@/components/students";
 import {useDialog} from "@/src/providers/dialog";
 import {Gender, StudentActivity} from "@/src/types/enums";
+import {deleteStudent} from "@/app/(protected)/app/students/actions/delete-student";
 
 export default () => {
     const {data: students} = useQuery({
@@ -25,9 +26,22 @@ export default () => {
         refetchOnMount: false,
     });
     const dialog = useDialog();
+    const queryClient = useQueryClient();
 
-    const openDialog = (props: TableRow) => {
+    const openInsertDialog = () => {
+        dialog.open(StudentTableInsertDialog);
+    }
+    const openUpdateDialog = (props: TableRow) => {
         dialog.open(StudentTableUpdateDialog, props)
+    }
+
+    const confirmDelete = async (id: TableRow["id"]) => {
+        if (confirm("Are you sure you want to delete this student?")) {
+            const result = await deleteStudent(id);
+            if (result === true) {
+                await queryClient.invalidateQueries({queryKey: ["students"]});
+            }
+        }
     }
 
     const tableActions = (row: TableRow) => (
@@ -39,7 +53,7 @@ export default () => {
                     width: 35px;
                     height: 35px;
                 `}
-                onClick={() => openDialog(row)}
+                onClick={() => openUpdateDialog(row)}
             >
                 <PencilIcon/>
             </Button>
@@ -50,15 +64,18 @@ export default () => {
                     width: 35px;
                     height: 35px;
                 `}
+                onClick={() => confirmDelete(row.id)}
             >
-                <EllipsisVerticalIcon/>
+                <Trash2Icon/>
             </Button>
         </Flex>
     );
 
     return (
         <Widget>
-            <Widget.Header title="İşçi Siyahısı"/>
+            <Widget.Header title="Tələbə Siyahısı">
+                <Button variant="outlined" onClick={openInsertDialog}>Əlavə et</Button>
+            </Widget.Header>
             <Widget.Content>
                 <Table
                     columns={[

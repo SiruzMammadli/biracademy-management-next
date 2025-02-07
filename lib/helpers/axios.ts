@@ -37,7 +37,7 @@ http.interceptors.response.use(
 
                 if (res.status !== StatusCodes.Ok) {
                     logToFile(error.message);
-                    window.location.href = '/signin';
+                    if (typeof window !== 'undefined') window.location.href = '/signin';
                     return Promise.reject(error);
                 }
                 const {access_token, refresh_token} = res.data;
@@ -50,12 +50,12 @@ http.interceptors.response.use(
                 logToFile(e);
                 await deleteCookieServer(`${process.env.NEXT_PUBLIC_COOKIE_TOKEN_NAME}`);
                 await deleteCookieServer(`${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`);
-                window.location.href = '/signin';
+                if (typeof window !== 'undefined') window.location.href = '/signin';
                 return Promise.reject(e);
             }
         }
         logToFile(error.message);
-        window.location.href = '/signin';
+        if (typeof window !== 'undefined') window.location.href = '/signin';
         return Promise.reject(error)
     }
 );

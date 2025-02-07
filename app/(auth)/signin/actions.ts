@@ -23,8 +23,8 @@ export const signin = async (_: unknown, formData: FormData) => {
     }
 
     const res = await http.post(`/signin`, {
-        email: formData.get("email"),
-        password: formData.get("password"),
+        email: validatedFields.data.email,
+        password: validatedFields.data.password,
     });
     if (res.status === StatusCodes.Ok) {
         let date = new Date();

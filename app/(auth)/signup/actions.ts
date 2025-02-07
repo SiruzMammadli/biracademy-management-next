@@ -33,9 +33,9 @@ export const signup = async (_: unknown, formData: FormData) => {
     if (!validatedFields.success) return { errors: validatedFields.error.flatten().fieldErrors }
 
     const res = await axios.post("/signup", {
-        email: formData.get("email"),
-        password: formData.get("password"),
-        fullname: formData.get("fullname"),
+        email: validatedFields.data.email,
+        password: validatedFields.data.password,
+        fullname: validatedFields.data.fullname,
         timezone: new Intl.DateTimeFormat().resolvedOptions().timeZone,
     }, {
         baseURL: process.env.NEXT_PUBLIC_API_URL,

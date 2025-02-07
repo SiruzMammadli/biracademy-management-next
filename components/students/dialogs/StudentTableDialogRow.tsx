@@ -14,6 +14,7 @@ const styles = {
             :first-child {
                 width: 25%;
                 color: rgb(var(--slate-500));
+                flex-shrink: 0;
             }
 
             :last-child {

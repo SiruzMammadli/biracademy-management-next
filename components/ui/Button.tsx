@@ -2,15 +2,17 @@
 import {css, SerializedStyles} from "@emotion/react";
 import {Spinner} from "@/components/ui";
 
-export default ({children, style: css, variant = 'primary', size, ...props}: ButtonProps) => {
+export default ({children, style: css, variant = 'primary', size, width, ...props}: ButtonProps) => {
     return (
         <button
+            type={props.type}
             disabled={props.disabled}
             onClick={props.onClick}
             css={[
                 styles._,
                 styles[variant as keyof ButtonProps["variant"]],
                 styles[size as keyof ButtonProps["size"]],
+                styles.width(width, size),
                 props.disabled ? styles.disabled : undefined,
                 css
             ]}
@@ -26,6 +28,8 @@ type ButtonProps = React.PropsWithChildren<Readonly<{
     variant?: 'primary' | 'outlined' | 'dark';
     size?: 'icon';
     disabled?: boolean;
+    width?: string;
+    type?: "submit" | "button" | "reset";
 }>>;
 
 const styles = {
@@ -34,7 +38,6 @@ const styles = {
         border-radius: 8px;
         padding-inline: 16px;
         white-space: nowrap;
-        width: 100%;
         text-align: center;
         cursor: pointer;
         display: inline-flex;
@@ -42,13 +45,13 @@ const styles = {
         justify-content: center;
         column-gap: 6px;
     `,
+    width: (width?: string, size?: 'icon') => css`width: ${width ? width : size === "icon" ? '40px' : '100%'};`,
     disabled: css`
         opacity: .5;
         pointer-events: none;
     `,
     icon: css`
         padding-inline: 0;
-        width: 40px;
         height: 40px;
         display: inline-flex;
         align-items: center;

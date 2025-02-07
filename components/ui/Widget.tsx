@@ -4,6 +4,7 @@ import Flex from "@/components/ui/Flex";
 import {EllipsisVerticalIcon} from "lucide-react";
 import Dropdown from "@/components/ui/Dropdown";
 import {PropsWithChildren} from "react";
+import {Button} from "@/components/ui/index";
 
 const styles = {
     widget: css`
@@ -45,10 +46,10 @@ const WidgetHeader = (
     {
         hasDropdown = true,
         ...props
-    }: {
+    }: PropsWithChildren<{
         title: string;
         hasDropdown?: boolean
-    }
+    }>
 ) => {
     return (
         <Flex
@@ -56,7 +57,10 @@ const WidgetHeader = (
             justifyContent="space-between"
         >
             <h3>{props.title}</h3>
-            <Flex>
+            <Flex gapX="27px">
+                <div>
+                    {props.children}
+                </div>
                 {hasDropdown ? (
                     <Dropdown>
                         <Dropdown.Trigger>

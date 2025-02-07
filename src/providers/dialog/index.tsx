@@ -1,7 +1,6 @@
 'use client';
 import {ElementType, Fragment} from "react";
 import {create} from "zustand/react";
-import {css} from "@emotion/react";
 
 interface IDialog {
     id: string;
@@ -10,9 +9,10 @@ interface IDialog {
     options?: Record<string, any>;
 }
 
-export type DialogProps = {
+export type SharedDialogProps = {
+    zIndex: number;
     onClose?: () => void;
-} & Record<string, any>
+}
 
 type DialogState = {
     dialogs: IDialog[],
@@ -36,7 +36,7 @@ export const useDialog = () => {
 
     const close = (id: string) => dropDialog(id);
 
-    const open = (element: ElementType, props?: DialogProps, options?: Record<string, any>) => {
+    const open = (element: IDialog["element"], props?: IDialog["props"], options?: IDialog["options"]) => {
         const id: string = Math.random().toString(16).substring(5);
         const _props = {
             ...props,
@@ -54,7 +54,7 @@ export default function DialogProvider() {
     const dialogs = dialogState(state => state.dialogs);
     return dialogs.map((dialog, index) => (
         <Fragment key={dialog.id}>
-            <dialog.element {...dialog.props} css={css`z-index: ${1000 + (10 * index)}`}/>
+            <dialog.element {...dialog.props} zIndex={1000 + (10 * index)}/>
         </Fragment>
     ))
 }

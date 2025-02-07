@@ -41,6 +41,8 @@ const styles = {
         border-radius: 8px;
         margin-bottom: 12px;
         overflow: hidden;
+        transition-property: border-color;
+        transition-duration: 50ms;
         
         :has(> input:focus) {
             border-color: rgb(var(--primary-800));

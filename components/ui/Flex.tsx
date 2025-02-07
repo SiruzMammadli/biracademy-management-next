@@ -1,5 +1,5 @@
 'use client';
-import {ElementType, PropsWithChildren} from "react";
+import {JSX, PropsWithChildren} from "react";
 import {css, SerializedStyles} from "@emotion/react";
 
 export default ({children, as: Element = 'div', style, ...props}: FlexProps) => {
@@ -11,7 +11,7 @@ export default ({children, as: Element = 'div', style, ...props}: FlexProps) => 
 }
 
 type FlexProps = PropsWithChildren<Readonly<{
-    as?: ElementType,
+    as?: keyof JSX.IntrinsicElements,
     style?: SerializedStyles
 } & FlexCSSProps>>;
 
@@ -20,6 +20,7 @@ type FlexCSSProps = {
     direction?: 'column' | 'row';
     alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
     justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
+    shrink?: string;
     gapX?: string;
     gapY?: string;
 };
@@ -33,6 +34,7 @@ const styles = {
             justifyContent,
             gapX,
             gapY,
+            shrink,
         }: FlexCSSProps
     ) => css`
         display: ${inline ? 'inline-flex' : 'flex'};
@@ -41,5 +43,6 @@ const styles = {
         justify-content: ${justifyContent};
         column-gap: ${gapX};
         row-gap: ${gapY};
+        flex-shrink: ${shrink};
     `,
 }
