@@ -31,6 +31,7 @@ const styles = {
         height: 40px;
         transition-property: color, background-color;
         transition-duration: 150ms;
+        user-select: none;
         ${isMatchingPath ? `
             background-color: white;
             color: rgb(var(--slate-950));

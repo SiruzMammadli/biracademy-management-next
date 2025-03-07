@@ -30,7 +30,7 @@ export default () => {
                                 isPasswordSecure={false}/>
                     <InputField label="Təkrar şifrə" placeholder="Təkrar şifrəni daxil et" name="repeat_new_password"
                                 type="password" isPasswordSecure={false}/>
-                    <Button>Tamamla</Button>
+                    <Button variant="primary">Tamamla</Button>
                 </form>
             </Flex>
         </AuthLayout>

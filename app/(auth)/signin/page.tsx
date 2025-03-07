@@ -34,7 +34,7 @@ export default () => {
                         {/*</Flex>*/}
                         <Link href="/forgot-password">Şifrəni unutmusan?</Link>
                     </Flex>
-                    <Button disabled={pending}>Daxil ol</Button>
+                    <Button variant="primary" disabled={pending}>Daxil ol</Button>
                 </form>
                 <Flex
                     gapX="4px"

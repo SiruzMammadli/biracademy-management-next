@@ -1,9 +1,23 @@
 export type SidebarNavListType = {
     title: string;
-    items: SidebarNavItem[],
+    items: SidebarNavListItemType[],
 }
 
-export type SidebarNavItem = {icon: React.ReactNode, label: string, href: string}
+export type SidebarNavListItemType = SidebarNavItem | SidebarNavCollapsibleItem;
+
+export type SidebarNavItem = {
+    href: string;
+    icon: React.ReactNode,
+    label: string,
+}
+
+export type SidebarNavCollapsibleItem = {
+    label: string,
+    collapsible?: boolean;
+    items: SidebarNavListItemType[];
+    icon: React.ReactNode;
+    expanded?: boolean;
+}
 
 export type ProfileDropdownItem = {
     label: string;

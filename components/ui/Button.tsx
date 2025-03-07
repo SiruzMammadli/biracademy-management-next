@@ -2,7 +2,7 @@
 import {css, SerializedStyles} from "@emotion/react";
 import {Spinner} from "@/components/ui";
 
-export default ({children, style: css, variant = 'primary', size, width, ...props}: ButtonProps) => {
+export default ({children, style: css, variant = 'outlined', size, width, ...props}: ButtonProps) => {
     return (
         <button
             type={props.type}

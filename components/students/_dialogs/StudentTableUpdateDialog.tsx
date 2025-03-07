@@ -72,8 +72,8 @@ export default ({id, email, fullname, phone, gender, activity, created_at, ...pr
             <Dialog.Footer>
                 <Flex gapX="12px" style={css`width: 100%;`}>
                     {/* TODO: bu buttonu form icine al */}
-                    <Button variant="outlined" style={css`flex: 1;`} onClick={props.onClose}>İmtina</Button>
-                    <Button style={css`flex: 1;`} disabled={pending} type="submit">
+                    <Button style={css`flex: 1;`} onClick={props.onClose}>İmtina</Button>
+                    <Button variant="primary" style={css`flex: 1;`} disabled={pending} type="submit">
                         Yenilə
                     </Button>
                 </Flex>

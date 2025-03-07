@@ -61,8 +61,8 @@ export default (props: SharedDialogProps) => {
                         ))}
                     </StudentTableDialogRow>
                     <Flex gapX="12px" style={css`width: 100%; padding-top: 12px;`}>
-                        <Button variant="outlined" style={css`flex: 1;`} onClick={props.onClose}>İmtina</Button>
-                        <Button style={css`flex: 1;`} disabled={pending} type="submit">
+                        <Button style={css`flex: 1;`} onClick={props.onClose}>İmtina</Button>
+                        <Button variant="primary" style={css`flex: 1;`} disabled={pending} type="submit">
                             Tamamla
                         </Button>
                     </Flex>

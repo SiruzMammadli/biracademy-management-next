@@ -40,10 +40,10 @@ http.interceptors.response.use(
                     if (typeof window !== 'undefined') window.location.href = '/signin';
                     return Promise.reject(error);
                 }
-                const {access_token, refresh_token} = res.data;
+                const {access_token, refresh_token, expiration} = res.data;
 
                 await setCookieServer(`${process.env.NEXT_PUBLIC_COOKIE_TOKEN_NAME}`, access_token);
-                await setCookieServer(`${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`, refresh_token);
+                await setCookieServer(`${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`, refresh_token, expiration);
                 http.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
                 return http(originalRequest)
             } catch (e) {

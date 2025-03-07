@@ -31,7 +31,7 @@ export default () => {
                     <p>Artıq yeni şifrənlə daxil ola bilərsən. Hər hansı problemlə qarşılaşsan, dəstək xidməti ilə əlaqə
                         saxla</p>
                 </div>
-                <Button style={css`margin-top: 24px;`} onClick={() => router.replace('/signin')}>Giriş səhifəsinə qayıt</Button>
+                <Button variant="primary" style={css`margin-top: 24px;`} onClick={() => router.replace('/signin')}>Giriş səhifəsinə qayıt</Button>
             </Flex>
         </AuthLayout>
     )

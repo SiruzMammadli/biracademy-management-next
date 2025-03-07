@@ -25,7 +25,7 @@ export default () => {
                 </div>
                 <form css={authStyles.form}>
                     <InputField label="Email" placeholder="Email ünvanını daxil et" name="email"/>
-                    <Button>Göndər</Button>
+                    <Button variant="primary">Göndər</Button>
                 </form>
             </Flex>
         </AuthLayout>

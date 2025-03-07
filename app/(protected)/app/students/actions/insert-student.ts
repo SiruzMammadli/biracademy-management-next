@@ -3,7 +3,6 @@ import {z} from "zod";
 import {http} from "@/lib/helpers/axios";
 import {StatusCodes} from "@/lib/helpers/statusCodes";
 import {Gender} from "@/src/types/enums";
-import {revalidatePath} from "next/cache";
 
 const schema = z.object({
     fullname: z.string(),
@@ -13,7 +12,7 @@ const schema = z.object({
         .refine(val => Object.keys(Gender).map(Number).includes(val))
 });
 
-export const insertStudent = async (state: unknown, formData: FormData) => {
+export const insertStudent = async (_: unknown, formData: FormData) => {
     const validatedFields = schema.safeParse({
         fullname: formData.get('fullname'),
         email: formData.get('email'),

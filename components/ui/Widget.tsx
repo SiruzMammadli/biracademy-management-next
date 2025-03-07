@@ -4,7 +4,6 @@ import Flex from "@/components/ui/Flex";
 import {EllipsisVerticalIcon} from "lucide-react";
 import Dropdown from "@/components/ui/Dropdown";
 import {PropsWithChildren} from "react";
-import {Button} from "@/components/ui/index";
 
 const styles = {
     widget: css`
@@ -19,7 +18,8 @@ const styles = {
     `,
     widgetHeader: css`
         > h3 {
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: 500;
         }
     `,
     ellipsisIcon: css`
@@ -53,7 +53,7 @@ const WidgetHeader = (
 ) => {
     return (
         <Flex
-            css={styles.widgetHeader}
+            style={styles.widgetHeader}
             justifyContent="space-between"
         >
             <h3>{props.title}</h3>

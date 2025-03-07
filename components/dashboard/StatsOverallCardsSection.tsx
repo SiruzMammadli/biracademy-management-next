@@ -1,24 +1,10 @@
 'use client';
 import {css} from "@emotion/react";
-import {Flex, StatsCardOverall} from "@/components/ui";
-import {ArrowUpRightIcon} from "lucide-react";
+import {StatsCardOverall} from "@/components/ui";
 
 export default () => {
     return (
         <section css={styles.statsOverallCardsContainer}>
-            {/*<StatsCardOverall title="Card 1">*/}
-            {/*    <Flex direction="column">*/}
-            {/*        <Flex justifyContent="space-between" style={styles.totalEmployeeCardRow}>*/}
-            {/*            <Flex inline gapX="12px">*/}
-            {/*                <span>150</span>*/}
-            {/*                <Flex inline gapX="2px">*/}
-            {/*                    <ArrowUpRightIcon />*/}
-            {/*                    <span>50</span>*/}
-            {/*                </Flex>*/}
-            {/*            </Flex>*/}
-            {/*        </Flex>*/}
-            {/*    </Flex>*/}
-            {/*</StatsCardOverall>*/}
             <StatsCardOverall title="Card 1">
                 ...
             </StatsCardOverall>

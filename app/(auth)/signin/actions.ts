@@ -27,27 +27,22 @@ export const signin = async (_: unknown, formData: FormData) => {
         password: validatedFields.data.password,
     });
     if (res.status === StatusCodes.Ok) {
-        let date = new Date();
-        let expires = new Date(date.setMonth(date.getDate() + 1));
-
         const cookieStore = await cookies();
         cookieStore.set({
             httpOnly: true,
             name: `${process.env.NEXT_PUBLIC_COOKIE_TOKEN_NAME}`,
             value: res.data.access_token,
             path: '/',
-            expires,
             secure: true,
-            sameSite: 'lax',
+            sameSite: 'strict',
         });
         cookieStore.set({
             httpOnly: true,
             name: `${process.env.NEXT_PUBLIC_COOKIE_SID_NAME}`,
             value: res.data.refresh_token,
             path: '/',
-            expires,
             secure: true,
-            sameSite: 'lax',
+            sameSite: 'strict',
         });
         redirect("/app");
     }

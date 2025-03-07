@@ -1,8 +1,8 @@
 import StudentTableWidget from "./StudentTableWidget";
-import StudentTableDialogRow from "./dialogs/StudentTableDialogRow";
-import StudentTableDialogRadio from "./dialogs/StudentTableDialogRadio";
-import StudentTableUpdateDialog from "./dialogs/StudentTableUpdateDialog";
-import StudentTableInsertDialog from "./dialogs/StudentTableInsertDialog";
+import StudentTableDialogRow from "@/components/students/_dialogs/StudentTableDialogRow";
+import StudentTableDialogRadio from "@/components/students/_dialogs/StudentTableDialogRadio";
+import StudentTableUpdateDialog from "@/components/students/_dialogs/StudentTableUpdateDialog";
+import StudentTableInsertDialog from "@/components/students/_dialogs/StudentTableInsertDialog";
 
 
 export {

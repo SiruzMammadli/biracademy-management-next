@@ -12,10 +12,10 @@ export default () => {
             >
                 <AppHeaderTitle/>
                 <Flex gapX="12px">
-                    <Button variant="outlined" size="icon">
+                    <Button size="icon">
                         <MailIcon />
                     </Button>
-                    <Button variant="outlined" size="icon">
+                    <Button size="icon">
                         <BellIcon />
                     </Button>
                 </Flex>

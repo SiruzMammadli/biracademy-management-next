@@ -8,30 +8,9 @@ import {
     SettingsIcon, UsersIcon,
 } from "lucide-react";
 import SidebarNavList from "@/components/layout/sidebar/SidebarNavList";
-import {UpgradePlanCard} from "@/components/layout";
 import SidebarProfileMenu from "@/components/layout/sidebar/SidebarProfileMenu";
 import {useAuth} from "@/src/providers/auth";
-
-const navList: SidebarNavListType[] = [
-    {
-        title: "ƏSAS MENYU",
-        items: [
-            {icon: <GaugeIcon/>, label: 'İdarə paneli', href: '/app'},
-            {icon: <CalendarIcon/>, label: 'Təqvim', href: '/app/calendar'},
-            {icon: <SettingsIcon/>, label: 'Parametrlər', href: '/app/settings'},
-        ]
-    },
-    {
-        title: "İDARƏ",
-        items: [
-            {icon: <UsersIcon/>, label: 'Tələbələr', href: '/app/students'},
-            // {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
-            // {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
-            // {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
-            // {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
-        ]
-    }
-]
+import SidebarNav from "@/components/layout/sidebar/SidebarNav";
 
 export default () => {
     const auth = useAuth();
@@ -49,7 +28,9 @@ export default () => {
             </Flex>
             <section css={styles.nav_lists}>
                 {navList.map((nav, key) => (
-                    <SidebarNavList key={key} title={nav.title} items={nav.items}/>
+                    <SidebarNav title={nav.title} key={key}>
+                        <SidebarNavList items={nav.items}/>
+                    </SidebarNav>
                 ))}
             </section>
             {/*<UpgradePlanCard/>*/}
@@ -80,3 +61,37 @@ const styles = {
         flex-grow: 1;
     `,
 }
+
+const navList: SidebarNavListType[] = [
+    {
+        title: "ƏSAS MENYU",
+        items: [
+            {icon: <GaugeIcon/>, label: 'İdarə paneli', href: '/app'},
+            {icon: <CalendarIcon/>, label: 'Təqvim', href: '/app/calendar'},
+            {icon: <SettingsIcon/>, label: 'Parametrlər', href: '/app/settings'},
+        ]
+    },
+    {
+        title: "İDARƏ",
+        items: [
+            {
+                icon: <UsersIcon/>, label: 'Tələbələr', collapsible: true, expanded: true, items: [
+                    {
+                        icon: <></>,
+                        label: 'Tələbə cədvəli',
+                        href: '/app/students',
+                    },
+                    {
+                        icon: <></>,
+                        label: 'Ümumi baxış',
+                        href: '/app/students/overview',
+                    },
+                ]
+            },
+            // {icon: <ChartAreaIcon/>, label: 'Performance', href: '/app/performance'},
+            // {icon: <ReceiptTextIcon/>, label: 'Invoices', href: '/app/invoices'},
+            // {icon: <UsersIcon/>, label: 'Employees', href: '/app/employees'},
+            // {icon: <UserPlusIcon/>, label: 'Hiring', href: '/app/hiring'},
+        ]
+    }
+]

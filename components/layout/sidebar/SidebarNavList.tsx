@@ -1,35 +1,38 @@
 'use client';
-import {SidebarNavListType} from "@/components/layout/types";
+import {
+    SidebarNavCollapsibleItem,
+    SidebarNavItem,
+    SidebarNavListItemType,
+} from "@/components/layout/types";
 import SidebarNavListItem from "@/components/layout/sidebar/SidebarNavListItem";
-import {css} from "@emotion/react";
 import {Flex} from "@/components/ui";
+import Collapsible from "@/components/ui/Collapsible";
 
-export default ({title, items}: Readonly<SidebarNavListType>) => {
+export default ({items}: Readonly<{items: SidebarNavListItemType[]}>) => {
     return (
-        <nav>
-            <h6 css={styles.title}>{title}</h6>
-            <div css={styles.content}>
-                <Flex
-                    as="ul"
-                    direction="column"
-                    gapY="4px"
-                >
-                    {items.map((item, key) => (
-                        <SidebarNavListItem key={key} {...item}/>
-                    ))}
-                </Flex>
-            </div>
-        </nav>
+        <Flex
+            as="ul"
+            direction="column"
+            gapY="4px"
+        >
+            {items.map((item: SidebarNavItem | SidebarNavCollapsibleItem, key) => {
+                return "collapsible" in item ? (
+                    <Collapsible
+                        key={key}
+                        summary={item.label}
+                        items={item.items}
+                        icon={item.icon}
+                        expanded={item.expanded}
+                    />
+                ) : "href" in item ? (
+                    <SidebarNavListItem
+                        key={key}
+                        label={item.label}
+                        icon={item.icon}
+                        href={item.href}
+                    />
+                ) : null;
+            })}
+        </Flex>
     )
-}
-
-const styles = {
-    title: css`
-        letter-spacing: 1px;
-        font-size: 11px;
-        color: rgb(var(--slate-500));
-    `,
-    content: css`
-        margin-top: 8px;
-    `,
 }

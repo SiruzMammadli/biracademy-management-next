@@ -5,5 +5,7 @@ export const RoutesDictionary: RouteDictionary = {
     "/app": {label: "İdarə paneli"},
     "/app/calendar": {label: "Təqvim"},
     "/app/settings": {label: 'Parametrlər'},
-    "/app/students": {label: 'Tələbələr'},
+    // STUDENTS
+    "/app/students": {label: 'Tələbə cədvəli'},
+    "/app/students/overview": {label: 'Tələbələrə ümumi baxış'},
 };

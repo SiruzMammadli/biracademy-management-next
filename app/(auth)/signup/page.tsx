@@ -28,7 +28,7 @@ export default () => {
                               />
                     <InputField label="Təkrar şifrə" placeholder="Təkrar şifrəni daxil et" type="password"
                                name="repeat_password"/>
-                    <Button disabled={pending}>Tamamla</Button>
+                    <Button variant="primary" disabled={pending}>Tamamla</Button>
                 </form>
                 <Flex
                     gapX="4px"

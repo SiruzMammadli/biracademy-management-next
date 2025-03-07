@@ -11,7 +11,15 @@ export const deleteCookieServer = async (cookieName: string) => {
     cookieStore.delete(cookieName);
 }
 
-export const setCookieServer = async (cookieName: string, value: any) => {
+export const setCookieServer = async (cookieName: string, value: string, expires?: Date) => {
     const cookieStore = await cookies();
-    cookieStore.set(cookieName, value);
+    cookieStore.set({
+        httpOnly: true,
+        name: cookieName,
+        value: value,
+        path: '/',
+        expires,
+        secure: true,
+        sameSite: 'strict',
+    });
 }
